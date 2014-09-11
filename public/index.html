@@ -8,6 +8,7 @@
 		<script src="http://cdn.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 		<script src="http://cdn.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 		<script src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.min.js"></script>
+		<script src="http://cdn.robotwebtools.org/mjpegcanvasjs/current/mjpegcanvas.min.js"></script>
 		<script>
 		/**
 		* Setup all visualization elements when the page is loaded.
@@ -59,12 +60,23 @@
 				rootObject : viewer.selectableObjects,
 				path : MESH_URL
 			});
+
+			new MJPEGCANVAS.MultiStreamViewer({
+		  		divID : 'mjpeg',
+		 		host : 'localhost',
+				port : '8181',
+			    width : 400,
+				height : 300,
+				topics : ['/head_mount_kinect/rgb/image_raw'],
+				labels : ['Overhead East View']
+			});
 		}
 		</script>
 	</head>
 
 	<body onload="init()">
 		  <div id="urdf"></div>
+		  <div id="mjpeg"></div>
 	</body>
 </html>
 
